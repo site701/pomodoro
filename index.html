@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Помодоро Таймер — Фокус и Музыка YouTube</title>
+    <meta name="description" content="Помодоро таймер с режимами 25/5 и 50/10, синхронизация с музыкой YouTube, цели на сессию и подробная статистика.">
+    <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="preconnect" href="https://i.ytimg.com" crossorigin>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">⏳</div>
+        <div class="titles">
+          <h1>Помодоро Таймер</h1>
+          <p>Фокусируйся под любимую музыку</p>
+        </div>
+      </div>
+      <nav class="modes" aria-label="Режимы таймера">
+        <label class="mode">
+          <input type="radio" name="mode" value="25_5" checked>
+          <span>25 / 5</span>
+        </label>
+        <label class="mode">
+          <input type="radio" name="mode" value="50_10">
+          <span>50 / 10</span>
+        </label>
+      </nav>
+    </header>
+
+    <main class="layout">
+      <section class="panel focus-panel">
+        <div class="timer-card">
+          <div class="timer-header">
+            <div class="state-pill" id="statePill" aria-live="polite">Фокус</div>
+            <div class="cycle-info"><span id="cycleCount">0</span> циклов</div>
+          </div>
+
+          <div class="timer-visual">
+            <div class="progress" id="progressRing">
+              <div class="time" id="timeDisplay">25:00</div>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="btn primary" id="startPauseBtn">Старт</button>
+            <button class="btn" id="resetBtn" title="Сбросить">Сброс</button>
+            <button class="btn" id="skipBtn" title="Пропустить перерыв">Пропуск</button>
+          </div>
+
+          <div class="toggles">
+            <label class="toggle">
+              <input type="checkbox" id="autoStartNext" checked>
+              <span>Автостарт следующей фазы</span>
+            </label>
+            <label class="toggle">
+              <input type="checkbox" id="musicDuringBreak">
+              <span>Музыка во время перерыва</span>
+            </label>
+            <label class="toggle">
+              <input type="checkbox" id="pauseMusicOnPause" checked>
+              <span>Пауза музыки при паузе таймера</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="goals-card">
+          <h2>Цели на сессию</h2>
+          <form id="goalForm" class="goal-form" autocomplete="off">
+            <input id="goalInput" class="input" type="text" placeholder="Добавить цель (например: Написать отчет)" required>
+            <input id="goalPomodoros" class="input short" type="number" min="1" max="12" value="1" title="Планируемое количество помодоро на задачу">
+            <button class="btn add" type="submit">Добавить</button>
+          </form>
+          <ul id="goalList" class="goal-list" aria-live="polite"></ul>
+
+          <div class="session-stats">
+            <div class="stat"><span id="statCompleted">0</span><label>выполнено задач</label></div>
+            <div class="stat"><span id="statFocusMinutes">0</span><label>минут фокуса</label></div>
+            <div class="stat"><span id="statBreakMinutes">0</span><label>минут перерыва</label></div>
+            <div class="stat"><span id="statPomodoros">0</span><label>завершено помодоро</label></div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel media-panel">
+        <div class="player-card">
+          <h2>Музыка YouTube</h2>
+          <p class="sub">Музыка синхронизируется с таймером. Вход не требуется.</p>
+
+          <div class="source-selectors">
+            <div class="source">
+              <label for="workSource">Трек/плейлист для Фокуса</label>
+              <div class="row">
+                <input id="workSource" class="input" type="url" placeholder="Вставьте ссылку YouTube или оставьте по умолчанию">
+                <button class="btn" id="applyWorkSrc">Применить</button>
+              </div>
+            </div>
+            <div class="source">
+              <label for="breakSource">Трек/плейлист для Перерыва</label>
+              <div class="row">
+                <input id="breakSource" class="input" type="url" placeholder="Вставьте ссылку YouTube или оставьте по умолчанию">
+                <button class="btn" id="applyBreakSrc">Применить</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="player-frame">
+            <div id="player" class="yt-frame" aria-label="YouTube плеер"></div>
+          </div>
+
+          <div class="player-controls">
+            <button class="btn" id="muteBtn" title="Вкл/выкл звук">🔈</button>
+            <button class="btn" id="playBtn" title="Проигрывать">▶️</button>
+            <button class="btn" id="pauseBtn" title="Пауза">⏸️</button>
+          </div>
+        </div>
+
+        <a class="banner" href="https://example.com" target="_blank" rel="noopener">
+          <img src="images/alfaBanner(horizontal).jpg" alt="Рекламный баннер">
+        </a>
+      </aside>
+    </main>
+
+    <footer class="app-footer">
+      <div>Создано с любовью к фокусу · Помодоро 25/5 и 50/10 · Локальное сохранение целей</div>
+    </footer>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="./script.js"></script>
+  </body>
+  </html>
+
